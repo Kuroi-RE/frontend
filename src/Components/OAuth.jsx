@@ -9,22 +9,19 @@ const OAuth = () => {
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const resultsGoogle = await signInWithPopup(auth, provider);
-      const response = await fetch('/api/auth/google', {
+      const response = await fetch("/api/auth/google", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(
-            {
-                name: resultsGoogle.user.displayName,
-                email: resultsGoogle.user.email,
-                photoUrl: resultsGoogle.user.photoURL,
-            }
-        )
-      })
+        body: JSON.stringify({
+          name: resultsGoogle.user.displayName,
+          email: resultsGoogle.user.email,
+          photoUrl: resultsGoogle.user.photoURL,
+        }),
+      });
 
-      const data = await response.json()
-      if(data.success ===)
+      const data = await response.json();
     } catch (error) {
       console.log(error);
     }
